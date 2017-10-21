@@ -19,21 +19,27 @@ def version() {
 }
 
 preferences {
-	input("confIpAddr", "string", title:"Envoy Local IP Address",
-		required: true, displayDuringSetup: true)
-	input("confTcpPort", "number", title:"TCP Port",
-		defaultValue:"80", required: true, displayDuringSetup: true)
-	input("confNumInverters", "number", title:"Number of Inverters/Panels",
-		required: true, displayDuringSetup: true)
-	input("pollingInterval", "number", title:"Polling Interval (min)",
-		defaultValue:"5", range: "2..59", required: true, displayDuringSetup: true)
-	input(title: "", description: "Inverter Size (W)\n\nRated maximum power in Watts for each inverter\n\nUse '225' for M215 and '250' for M250", type: "paragraph", element: "paragraph", displayDuringSetup: true)
-	input("confInverterSize", "number", title:"",
-		required: true, displayDuringSetup: true)
-	input(title: "", description: "Panel Size (W)\n\nRated maximum power in Watts for each panel\n\nThis can be different than the maximum inverter power above", type: "paragraph", element: "paragraph", displayDuringSetup: true)
-	input("confPanelSize", "number", title:"",
-		required: true, displayDuringSetup: true)
-	input(title:"", description: "Version: ${version()}", type: "paragraph", element: "paragraph")
+  section {
+  	input("confIpAddr", "string", title:"Envoy Local IP Address",
+  		required: true, displayDuringSetup: true)
+  	input("confTcpPort", "number", title:"TCP Port",
+  		defaultValue:"80", required: true, displayDuringSetup: true)
+  	input("confNumInverters", "number", title:"Number of Inverters/Panels",
+  		required: true, displayDuringSetup: true)
+  	input("pollingInterval", "number", title:"Polling Interval (min)",
+  		defaultValue:"5", range: "2..59", required: true, displayDuringSetup: true)
+  }
+	section {
+    paragraph "Rated maximum power in Watts for each inverter\n\nUse '225' for M215 and '250' for M250"
+	  input("confInverterSize", "number", title:"Inverter Size (W)",
+		  required: true, displayDuringSetup: true)
+	  paragraph "Rated maximum power in Watts for each panel\n\nThis can be different than the maximum inverter power above"
+	  input("confPanelSize", "number", title:"Panel Size (W)",
+		  required: true, displayDuringSetup: true)
+  }
+  section {
+	  paragraph "Version: ${version()}"
+  }
 }
 
 metadata {
